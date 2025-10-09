@@ -10,6 +10,7 @@ Author:           Alexander Loo
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:part_page/theme/theme_manager.dart';
+import 'package:part_page/theme/theme_variants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -27,10 +28,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Partion Project',
+
+      theme: darkTheme,
+      darkTheme: darkTheme,
+      themeMode: _themeManager.themeMode,
+
+      /*
+      // Default theme
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      */
+
       home: const PartionPage(title: 'Partion Page'),
     );
   }
