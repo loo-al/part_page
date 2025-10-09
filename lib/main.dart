@@ -4,7 +4,7 @@ al.com is a website built with flutter dart and compiled into HTML.
 preconditions:    Url to this page is on landing site and forwards to this path
 post conditions:  Users can can view the site path  and interact with the interface
 
-Author:           Alexander Loo
+Author:           Aurthor
 */
 
 import 'package:flutter/material.dart';
@@ -15,21 +15,46 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 ThemeManager _themeManager = ThemeManager();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  //const MyApp({super.key});
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp>{
+
+  @override
+  void dispose() {
+    _themeManager.removeListener(themeListener);
+    super.dispose();
+  }
+
+  @override
+  void initState(){
+    _themeManager.addListener(themeListener);
+    super.initState();
+  }
+
+  themeListener(){
+    if(mounted){
+      setState(() {
+
+      });
+    }
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Partion Project',
-
-      theme: darkTheme,
+      title: 'The Project',
+      debugShowCheckedModeBanner: false,
+      theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _themeManager.themeMode,
 
@@ -41,13 +66,13 @@ class MyApp extends StatelessWidget {
       ),
       */
 
-      home: const PartionPage(title: 'Partion Page'),
+      home: const MyPage(title: 'The Page'),
     );
   }
 }
 
-class PartionPage extends StatefulWidget {
-  const PartionPage({super.key, required this.title});
+class MyPage extends StatefulWidget {
+  const MyPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -56,10 +81,10 @@ class PartionPage extends StatefulWidget {
   final String title;
 
   @override
-  State<PartionPage> createState() => _PartionPageState();
+  State<MyPage> createState() => _MyPageState();
 }
 
-class _PartionPageState extends State<PartionPage> {
+class _MyPageState extends State<MyPage> {
 
   int _counter = 0;
   void _incrementCounter() {
@@ -74,11 +99,23 @@ class _PartionPageState extends State<PartionPage> {
     return Scaffold(
       appBar: AppBar(
 
-
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.dark_mode
+                  : Icons.wb_sunny,
+              size: 35,
+            ),
+            onPressed: (){
+              _themeManager.toggleTheme(_themeManager.themeMode);
+            },
+          )
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
