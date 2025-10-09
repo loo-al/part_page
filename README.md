@@ -1,4 +1,4 @@
-# Partion Page
+# Partion page
 
 A technology Project.
 
@@ -9,4 +9,3 @@ This site path is an endpoint for alexanderloo.com.
 A few resources this project:
 
 - [Website Landing Page](https://alexanderloo.com)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookboo)
