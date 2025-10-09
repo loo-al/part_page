@@ -4,7 +4,7 @@ A technology Project.
 
 ## Info
 
-This site path is an endpoint for alexanderloo.com. It gives a detailed description of the project 
+This site path is an endpoint for alexanderloo.com and gives a detailed description of the project  
 complete with a few images. 
 
 The site theme default is in dark and can toggle between that and light mode.  
