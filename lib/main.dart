@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp>{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'The Project',
+      title: 'Project: Partion',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
@@ -61,12 +61,11 @@ class _MyAppState extends State<MyApp>{
       /*
       // Default theme
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       */
 
-      home: const MyPage(title: 'The Page'),
+      home: const MyPage(title: 'AL'),
     );
   }
 }
@@ -108,7 +107,7 @@ class _MyPageState extends State<MyPage> {
             icon: Icon(
               Theme.of(context).brightness == Brightness.dark
                   ? Icons.wb_sunny_outlined
-                  : Icons.dark_mode_sharp,
+                  : Icons.dark_mode_outlined,
               size: 20,
             ),
             onPressed: (){
