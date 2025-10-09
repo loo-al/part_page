@@ -107,12 +107,12 @@ class _MyPageState extends State<MyPage> {
           IconButton(
             icon: Icon(
               Theme.of(context).brightness == Brightness.dark
-                  ? Icons.dark_mode
-                  : Icons.wb_sunny,
-              size: 35,
+                  ? Icons.wb_sunny_outlined
+                  : Icons.dark_mode_sharp,
+              size: 20,
             ),
             onPressed: (){
-              _themeManager.toggleTheme(_themeManager.themeMode);
+              _themeManager.toggleTheme();
             },
           )
         ],
@@ -121,8 +121,6 @@ class _MyPageState extends State<MyPage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
