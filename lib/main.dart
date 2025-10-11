@@ -13,6 +13,7 @@ import 'package:part_page/theme/theme_manager.dart';
 import 'package:part_page/theme/theme_variants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'size.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,13 +34,11 @@ class _MyAppState extends State<MyApp>{
     _themeManager.removeListener(themeListener);
     super.dispose();
   }
-
   @override
   void initState(){
     _themeManager.addListener(themeListener);
     super.initState();
   }
-
   themeListener(){
     if(mounted){
       setState(() {
@@ -58,14 +57,21 @@ class _MyAppState extends State<MyApp>{
       darkTheme: darkTheme,
       themeMode: _themeManager.themeMode,
 
+      home: Builder(
+        builder: (context){
+          Size.init(context);
+          return MyPage(title: 'AL',);
+        }
+      )
+
       /*
       // Default theme
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      home: const MyPage(title: 'AL'),
       */
 
-      home: const MyPage(title: 'AL'),
     );
   }
 }
@@ -95,8 +101,68 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
 
+    // Set a max width for the components below the AppBar
+    const maxWidth = 1000.0;
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF121212),
+        title: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: maxWidth),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center, // Center logo and buttons
+                children: [
+
+                  // Left asset in appbar
+                  Image.asset(
+                    'images/AL_logo.png',
+                    width: 50, // Set the width of the image
+                    height: 50, // Set the height of the image
+                  ),
+
+                  SizedBox(
+                      width: Size().getScreenWidth() < 800
+                          ? (Size().twentyw )
+                          : (Size().thirtyw + Size().fivew) + 15
+                  ),
+
+                  // Buttons with right padding (adjustable)
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextButton(
+                        onPressed: () {();},
+                        // onPressed: () {_scrollToSection(_aboutKey);},
+                        child: Text(
+                          "PARTION",
+                          style: TextStyle(color: Colors.grey[400], fontSize: 12,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? Icons.wb_sunny_outlined
+                              : Icons.dark_mode_outlined,
+                          size: 20,
+                        ),
+                        onPressed: (){
+                          _themeManager.toggleTheme();
+                        },
+                      )
+                    ],
+                  ),
+                ],
+              ), // Row
+            ),
+          ), // Padding
+        ), // Center
+      ),
+      /*
+      AppBar(
 
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
@@ -116,6 +182,7 @@ class _MyPageState extends State<MyPage> {
           )
         ],
       ),
+      */
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
