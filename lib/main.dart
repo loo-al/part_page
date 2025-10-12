@@ -51,9 +51,11 @@ class _MyAppState extends State<MyApp>{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Project: Partion',
+      title: 'Project: App Name',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
+      theme: ThemeData(
+        colorScheme: lightTheme.colorScheme
+      ),
       darkTheme: darkTheme,
       themeMode: _themeManager.themeMode,
 
@@ -97,6 +99,11 @@ class _MyPageState extends State<MyPage> {
       _counter++;
     });
   }
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,9 +144,14 @@ class _MyPageState extends State<MyPage> {
                         onPressed: () {();},
                         // onPressed: () {_scrollToSection(_aboutKey);},
                         child: Text(
-                          "PARTION",
-                          style: TextStyle(color: Colors.grey[400], fontSize: 12,
-                              fontWeight: FontWeight.normal),
+                          "APP NAME",
+
+                          style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 12,
+                              fontWeight: FontWeight.w900
+                          ),
+
                         ),
                       ),
                       IconButton(
@@ -161,28 +173,7 @@ class _MyPageState extends State<MyPage> {
           ), // Padding
         ), // Center
       ),
-      /*
-      AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Theme.of(context).brightness == Brightness.dark
-                  ? Icons.wb_sunny_outlined
-                  : Icons.dark_mode_outlined,
-              size: 20,
-            ),
-            onPressed: (){
-              _themeManager.toggleTheme();
-            },
-          )
-        ],
-      ),
-      */
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -197,11 +188,44 @@ class _MyPageState extends State<MyPage> {
           ],
         ),
       ),
+
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          // First FAB (increment)
+          FloatingActionButton(
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            backgroundColor: Theme.of(context).brightness == Brightness.dark
+                ? DARK_ACCENT
+                : LIGHT_ACCENT,
+            child: const Icon(Icons.add),
+          ),
+          SizedBox(width: 16),  // Add spacing between buttons
+          // Second FAB (decrement)
+          FloatingActionButton(
+            onPressed: _resetCounter,
+            tooltip: 'Reset',
+            backgroundColor: Colors.purple,
+            child: const Icon(Icons.restart_alt),
+          ),
+        ],
+      ),
+
+      /*
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? DARK_ACCENT
+            : LIGHT_ACCENT,
+        foregroundColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+      */
+
     );
   }
 }
