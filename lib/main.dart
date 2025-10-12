@@ -9,6 +9,7 @@ Author:           Aurthor
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:part_page/strings.dart';
 import 'package:part_page/theme/theme_manager.dart';
 import 'package:part_page/theme/theme_variants.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -176,10 +177,10 @@ class _MyPageState extends State<MyPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('You have pushed the large button this many times:',
+            Text(Strings().test,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Text('You have pushed the medium button this many times:',
+            Text(Strings().test,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
