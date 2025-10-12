@@ -69,14 +69,6 @@ class _MyAppState extends State<MyApp>{
         }
       )
 
-      /*
-      // Default theme
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyPage(title: 'AL'),
-      */
-
     );
   }
 }
@@ -205,9 +197,6 @@ class _MyPageState extends State<MyPage> {
           FloatingActionButton(
             onPressed: _incrementCounter,
             tooltip: 'Increment',
-            // backgroundColor: Theme.of(context).brightness == Brightness.dark
-            //     ? CUSTOM_GREEN
-            //     : LIGHT_ACCENT,
             child: const Icon(Icons.add),
           ),
           SizedBox(width: 16),  // Add spacing between buttons
@@ -220,20 +209,6 @@ class _MyPageState extends State<MyPage> {
           ),
         ],
       ),
-
-      /*
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? DARK_ACCENT
-            : LIGHT_ACCENT,
-        foregroundColor: Theme.of(context).brightness == Brightness.dark
-            ? Colors.white
-            : Colors.black,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-      */
 
     );
   }
