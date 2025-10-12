@@ -53,9 +53,12 @@ class _MyAppState extends State<MyApp>{
     return MaterialApp(
       title: 'Project: App Name',
       debugShowCheckedModeBanner: false,
+      theme: lightTheme,
+      /*
       theme: ThemeData(
         colorScheme: lightTheme.colorScheme
       ),
+      */
       darkTheme: darkTheme,
       themeMode: _themeManager.themeMode,
 
@@ -110,6 +113,7 @@ class _MyPageState extends State<MyPage> {
 
     // Set a max width for the components below the AppBar
     const maxWidth = 1000.0;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
@@ -136,7 +140,7 @@ class _MyPageState extends State<MyPage> {
                           : (Size().thirtyw + Size().fivew) + 15
                   ),
 
-                  // Buttons with right padding (adjustable)
+                  // Floating Buttons with right padding (adjustable)
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -156,14 +160,11 @@ class _MyPageState extends State<MyPage> {
                       ),
                       IconButton(
                         icon: Icon(
-                          Theme.of(context).brightness == Brightness.dark
+                          isDarkMode
                               ? Icons.wb_sunny_outlined
                               : Icons.dark_mode_outlined,
                           size: 20,
                         ),
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? CUSTOM_GREEN
-                            : Colors.purple,
                         onPressed: (){
                           _themeManager.toggleTheme();
                         },
@@ -183,7 +184,12 @@ class _MyPageState extends State<MyPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
+            Text('You have pushed the large button this many times:',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            Text('You have pushed the medium button this many times:',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
@@ -199,9 +205,9 @@ class _MyPageState extends State<MyPage> {
           FloatingActionButton(
             onPressed: _incrementCounter,
             tooltip: 'Increment',
-            backgroundColor: Theme.of(context).brightness == Brightness.dark
-                ? CUSTOM_GREEN
-                : LIGHT_ACCENT,
+            // backgroundColor: Theme.of(context).brightness == Brightness.dark
+            //     ? CUSTOM_GREEN
+            //     : LIGHT_ACCENT,
             child: const Icon(Icons.add),
           ),
           SizedBox(width: 16),  // Add spacing between buttons
