@@ -161,6 +161,9 @@ class _MyPageState extends State<MyPage> {
                               : Icons.dark_mode_outlined,
                           size: 20,
                         ),
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? CUSTOM_GREEN
+                            : Colors.purple,
                         onPressed: (){
                           _themeManager.toggleTheme();
                         },
@@ -197,7 +200,7 @@ class _MyPageState extends State<MyPage> {
             onPressed: _incrementCounter,
             tooltip: 'Increment',
             backgroundColor: Theme.of(context).brightness == Brightness.dark
-                ? DARK_ACCENT
+                ? CUSTOM_GREEN
                 : LIGHT_ACCENT,
             child: const Icon(Icons.add),
           ),
