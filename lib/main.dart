@@ -110,7 +110,7 @@ class _MyPageState extends State<MyPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF121212),
+        //backgroundColor: Color(0xFF121212),
         title: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -141,10 +141,8 @@ class _MyPageState extends State<MyPage> {
                         onPressed: () {();},
                         // onPressed: () {_scrollToSection(_aboutKey);},
                         child: Text(
-                          "APP NAME",
-
+                          "PROJECT",
                           style: TextStyle(
-                              color: Colors.grey[400],
                               fontSize: 12,
                               fontWeight: FontWeight.w900
                           ),
