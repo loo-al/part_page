@@ -121,16 +121,44 @@ class _MyPageState extends State<MyPage> {
                 children: [
 
                   // Left asset in appbar
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'images/AL_logo.png',
+                        width: 50, // Set the width of the image
+                        height: 50, // Set the height of the image
+                      ),
+
+                      SizedBox(width: Size().onew,),
+                      Text( '|',
+                        style: TextStyle(
+                          color: isDarkMode
+                              ? MEDIUM_GREY
+                              : Colors.grey[300],
+                          fontSize: 36,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      SizedBox(width: Size().onew,),
+                      Text( Strings().appbar_title,
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                    ],
+                  ),
+
+                  /*
                   Image.asset(
                     'images/AL_logo.png',
                     width: 50, // Set the width of the image
                     height: 50, // Set the height of the image
                   ),
+                  */
 
                   SizedBox(
                       width: Size().getScreenWidth() < 800
                           ? (Size().twentyw )
-                          : (Size().thirtyw + Size().fivew) + 15
+                          : (Size().thirtyw + Size().fivew)
                   ),
 
                   // Floating Buttons with right padding (adjustable)
@@ -141,7 +169,7 @@ class _MyPageState extends State<MyPage> {
                         onPressed: () {();},
                         // onPressed: () {_scrollToSection(_aboutKey);},
                         child: Text(
-                          "PROJECT",
+                          "BACK",
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w900
@@ -169,24 +197,35 @@ class _MyPageState extends State<MyPage> {
         ), // Center
       ),
 
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(Strings().test,
-              style: Theme.of(context).textTheme.bodyLarge,
+      body: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        children: [
+          Center(
+            // Center is a layout widget. It takes a single child and positions it
+            // in the middle of the parent.
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+
+                SizedBox(height: Size().fiveh,),
+
+                // Text(Strings().part_titile,
+                //   style: Theme.of(context).textTheme.displayLarge, ),
+                Text(Strings().page_titile,
+                  style: Theme.of(context).textTheme.displayMedium, ),
+                Text(Strings().page_titile,
+                  style: Theme.of(context).textTheme.displaySmall, ),
+                Text(Strings().test,
+                  style: Theme.of(context).textTheme.bodyLarge, ),
+                Text(Strings().test,
+                  style: Theme.of(context).textTheme.bodyMedium, ),
+                Text( '$_counter',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
             ),
-            Text(Strings().test,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
 
       floatingActionButton: Row(
@@ -203,7 +242,7 @@ class _MyPageState extends State<MyPage> {
           FloatingActionButton(
             onPressed: _resetCounter,
             tooltip: 'Reset',
-            backgroundColor: Colors.purple,
+            backgroundColor: Colors.purpleAccent,
             child: const Icon(Icons.restart_alt),
           ),
         ],
