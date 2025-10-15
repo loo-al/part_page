@@ -24,6 +24,8 @@ class Size {
   double adjustedWidth = screenWidth * 0.60;
   double appBarPad = screenWidth / 6.5;
 
+  double body_space = screenHeight * 0.025;
+
   double h50 = screenHeight * 0.005;
   double oneh = screenHeight * 0.01;
   double twoh = screenHeight * 0.02;
