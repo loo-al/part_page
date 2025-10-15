@@ -16,7 +16,6 @@ import 'package:part_page/theme/theme_variants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'size.dart';
-import 'strings.dart';
 
 void main() {
   runApp(MyApp());
@@ -134,8 +133,6 @@ class _MyPageState extends State<MyPage> {
   // Function to copy a string to the clipboard
   void _copyToClipboard(String shareLink) {
     Clipboard.setData(ClipboardData(text: shareLink)).then((_) {
-      // Show a snackbar or toast to indicate the text was copied
-      print('Link copied to clipboard: $shareLink');
     });
   }
 
@@ -187,6 +184,7 @@ class _MyPageState extends State<MyPage> {
 
                   Spacer(flex: 1),
 
+                  // Old AppBar dynamic sizing
                   // SizedBox(
                   //     width: Size().getScreenWidth() < 800
                   //         ? (Size().twentyw )
