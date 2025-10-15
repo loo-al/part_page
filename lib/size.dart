@@ -34,6 +34,8 @@ class Size {
   double fiveh = screenHeight * 0.05;
   double tenh = screenHeight * 0.10;
   double twentyh = screenHeight * 0.20;
+  double thirtyh = screenHeight * 0.30;
+  double fiftyh = screenHeight * 0.50;
 
   double w25 = screenWidth * 0.0025;
   double w50 = screenWidth * 0.005;

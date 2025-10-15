@@ -8,6 +8,7 @@ Author:           Aurthor
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:part_page/strings.dart';
 import 'package:part_page/theme/theme_manager.dart';
@@ -15,6 +16,7 @@ import 'package:part_page/theme/theme_variants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'size.dart';
+import 'strings.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +25,7 @@ void main() {
 ThemeManager _themeManager = ThemeManager();
 
 class MyApp extends StatefulWidget {
-  //const MyApp({super.key});
+  const MyApp({super.key});
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -89,6 +91,9 @@ class MyPage extends StatefulWidget {
 
 class _MyPageState extends State<MyPage> {
 
+  // Scroll controller for controlling the scroll
+  final ScrollController _scrollController = ScrollController();
+
   int _counter = 0;
   void _incrementCounter() {
     setState(() {
@@ -98,6 +103,27 @@ class _MyPageState extends State<MyPage> {
   void _resetCounter() {
     setState(() {
       _counter = 0;
+    });
+  }
+
+  // Scroll to a section using the GlobalKey
+  void _scrollToSection(GlobalKey key) {
+    final context = key.currentContext;
+    if (context != null) {
+      final position = context.findRenderObject()!.getTransformTo(null).getTranslation();
+      _scrollController.animateTo(
+        position.y,
+        duration: Duration(seconds: 1),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  // Function to copy a string to the clipboard
+  void _copyToClipboard(String shareLink) {
+    Clipboard.setData(ClipboardData(text: shareLink)).then((_) {
+      // Show a snackbar or toast to indicate the text was copied
+      print('Link copied to clipboard: $shareLink');
     });
   }
 
@@ -191,94 +217,130 @@ class _MyPageState extends State<MyPage> {
         ), // Center
       ),
 
-      body: Stack(
-        alignment: AlignmentDirectional.topCenter,
-        children: [
-          Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: maxWidth),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: [
+            Center(
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxWidth),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
 
-                  SizedBox(height: Size().fiveh),
+                    SizedBox(height: Size().fiveh),
 
-                  // Page Title handles resizing
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                        maxWidth: maxWidth
-                    ),
-                    child: isSmallWidth
-                      // width <= 715
-                      ?Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(Strings().page_titile1,
-                          style: Theme.of(context).textTheme.displayMedium, ),
-                        Text(Strings().page_titile2,
-                          style: TextStyle(color: CUSTOM_GREEN, fontSize: 45
+                    // Page Title handles resizing
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                          maxWidth: maxWidth
+                      ),
+                      child: isSmallWidth
+                        // width <= 715
+                        ?Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(Strings().page_titile1,
+                            style: Theme.of(context).textTheme.displayMedium, ),
+                          Text(Strings().page_titile2,
+                            style: TextStyle(color: CUSTOM_GREEN, fontSize: 45
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                    // width >= 715
-                    : Row(
+                        ],
+                      )
+                      // width >= 715
+                      : Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(Strings().page_titile1,
+                            style: Theme.of(context).textTheme.displayMedium, ),
+                          SizedBox(width: 15),
+                          Text(Strings().page_titile2,
+                            style: TextStyle(color: CUSTOM_GREEN, fontSize: 45
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // SizedBox(height: Size().body_space),
+
+                    // Text(Strings().title_intro,
+                    //   style: Theme.of(context).textTheme.displaySmall, ),
+
+                    SizedBox(height: Size().body_space),
+
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(Strings().page_titile1,
-                          style: Theme.of(context).textTheme.displayMedium, ),
-                        SizedBox(width: 15),
-                        Text(Strings().page_titile2,
-                          style: TextStyle(color: CUSTOM_GREEN, fontSize: 45
+                        //Icon(Icons.date_range_rounded),
+                        // SizedBox(width: 3),
+                        Text(Strings().title_date,
+                            style: Theme.of(context).textTheme.bodySmall),
+
+                        Spacer(flex: 1),
+                        Icon(Icons.share),
+                        SizedBox(width: 3),
+
+                        Tooltip(
+                          message: 'Copy URL to Clipboard',
+                          child: TextButton(
+                            onPressed: () {
+                              String shareLink = 'https://www.site.com/project/myproject/';
+                              _copyToClipboard(shareLink);
+                            },
+                            child: Text(
+                              Strings().title_share,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
                           ),
                         ),
+
                       ],
                     ),
-                  ),
 
-                  SizedBox(height: Size().body_space),
+                    SizedBox(height: Size().body_space),
 
-                  Text(Strings().title_intro,
-                    style: Theme.of(context).textTheme.displaySmall, ),
-
-                  SizedBox(height: Size().body_space),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(Icons.date_range_rounded),
-                      SizedBox(width: 3),
-                      Text(Strings().title_date,
-                          style: Theme.of(context).textTheme.bodySmall),
-                    ],
-                  ),
+                    Container(
+                      width: double.infinity,
+                      height: Size().fiftyh,
+                      color: Colors.grey,
+                      // child: Image.asset(
+                      //   'assets/placeholder.png',
+                      //   fit: BoxFit.cover, // Adjusts how the image fits the container
+                      //   width: double.infinity,
+                      //   height: 250, // You can set a fixed height here or leave it dynamic
+                      // ),
+                    ), // End of Container
 
 
-                  SizedBox(height: Size().body_space),
+                    SizedBox(height: Size().body_space),
 
-                  Text(Strings().page_bodyi,
-                    style: Theme.of(context).textTheme.displaySmall, ),
+                    Text(Strings().page_bodyi,
+                      style: Theme.of(context).textTheme.displaySmall, ),
 
-                  SizedBox(height: Size().body_space),
+                    SizedBox(height: Size().body_space),
 
-                  Text(Strings().page_bodyii,
-                    style: Theme.of(context).textTheme.displaySmall, ),
+                    Text(Strings().page_bodyii,
+                      style: Theme.of(context).textTheme.displaySmall, ),
 
-                  // Text(Strings().test,
-                  //   style: Theme.of(context).textTheme.bodyLarge, ),
-                  // Text(Strings().test,
-                  //   style: Theme.of(context).textTheme.bodyMedium, ),
-                  Text( '$_counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ],
+                    // Text(Strings().test,
+                    //   style: Theme.of(context).textTheme.bodyLarge, ),
+                    // Text(Strings().test,
+                    //   style: Theme.of(context).textTheme.bodyMedium, ),
+                    Text( '$_counter',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 
       /*

@@ -13,6 +13,7 @@ class Strings{
   String page_titile1 = 'Projects:';
   String page_titile2 = 'Title of the Article Project';
   String title_date = 'MAY 9TH 2024';
+  String title_share= "SHARE";
   String title_intro = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna sit amet dolor eleifend feugiat.';
 
   String page_heading = 'Application Use Case';

@@ -15,7 +15,7 @@ const LIGHT_GREY = Color(0xFF8A8F8A);
 const LIGHT_ACCENT = Colors.green;
 
 // Icon Colors
-final DARK_ICON = Colors.grey[800];
+final DARK_ICON = Colors.grey[700];
 final DARK_ICON_TXT = Colors.grey[500];
 final LIGHT_ICON = Colors.grey[500];
 final LIGHT_ICON_TXT = Colors.grey[700];
@@ -24,7 +24,7 @@ final LIGHT_ICON_TXT = Colors.grey[700];
 final GREY500 = Colors.grey[500];
 final GREY600 = Colors.grey[600];
 const DARK_TITLE = Colors.white;
-final DARK_TXT = Colors.grey[200];
+const DARK_TXT = Colors.white;
 const LIGHT_TITLE = Colors.black;
 const LIGHT_Txt = Colors.black;
 
