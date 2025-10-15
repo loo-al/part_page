@@ -106,6 +106,18 @@ class _MyPageState extends State<MyPage> {
     });
   }
 
+  bool _isHovered = false;
+  void _trueHover(){
+    setState(() {
+      _isHovered = true;
+    });
+  }
+  void _falseHover(){
+    setState(() {
+      _isHovered = false;
+    });
+  }
+
   // Scroll to a section using the GlobalKey
   void _scrollToSection(GlobalKey key) {
     final context = key.currentContext;
@@ -288,17 +300,43 @@ class _MyPageState extends State<MyPage> {
 
                         Tooltip(
                           message: 'Copy URL to Clipboard',
-                          child: TextButton(
-                            onPressed: () {
-                              String shareLink = 'https://www.site.com/project/myproject/';
-                              _copyToClipboard(shareLink);
+                          child: MouseRegion(
+                            onEnter: (_){
+                              _trueHover();
                             },
-                            child: Text(
-                              Strings().title_share,
-                              style: Theme.of(context).textTheme.bodySmall,
+                            onExit: (_) {
+                              _falseHover();
+                            },
+                            child: TextButton(
+                              onPressed: () {
+                                String shareLink = 'https://www.site.com/project/myproject/';
+                                _copyToClipboard(shareLink);
+                              },
+                              child: Text(
+                                Strings().title_share, // Replace with your actual text
+                                style: GoogleFonts.sora(
+                                  color: _isHovered ? CUSTOM_GREEN : null, // Change text color on hover
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                           ),
                         ),
+
+                        // Tooltip(
+                        //   message: 'Copy URL to Clipboard',
+                        //   child: TextButton(
+                        //     onPressed: () {
+                        //       String shareLink = 'https://www.site.com/project/myproject/';
+                        //       _copyToClipboard(shareLink);
+                        //     },
+                        //     child: Text(
+                        //       Strings().title_share,
+                        //       style: Theme.of(context).textTheme.bodySmall,
+                        //     ),
+                        //   ),
+                        // ),
 
                       ],
                     ),
