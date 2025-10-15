@@ -295,18 +295,14 @@ class _MyPageState extends State<MyPage> {
                             style: Theme.of(context).textTheme.bodySmall),
 
                         Spacer(flex: 1),
+
                         Icon(Icons.share),
-                        SizedBox(width: 3),
 
                         Tooltip(
                           message: 'Copy URL to Clipboard',
                           child: MouseRegion(
-                            onEnter: (_){
-                              _trueHover();
-                            },
-                            onExit: (_) {
-                              _falseHover();
-                            },
+                            onEnter: (_){ _trueHover(); },
+                            onExit: (_) { _falseHover(); },
                             child: TextButton(
                               onPressed: () {
                                 String shareLink = 'https://www.site.com/project/myproject/';
@@ -323,21 +319,6 @@ class _MyPageState extends State<MyPage> {
                             ),
                           ),
                         ),
-
-                        // Tooltip(
-                        //   message: 'Copy URL to Clipboard',
-                        //   child: TextButton(
-                        //     onPressed: () {
-                        //       String shareLink = 'https://www.site.com/project/myproject/';
-                        //       _copyToClipboard(shareLink);
-                        //     },
-                        //     child: Text(
-                        //       Strings().title_share,
-                        //       style: Theme.of(context).textTheme.bodySmall,
-                        //     ),
-                        //   ),
-                        // ),
-
                       ],
                     ),
 

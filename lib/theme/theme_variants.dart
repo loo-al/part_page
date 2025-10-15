@@ -15,9 +15,11 @@ const LIGHT_GREY = Color(0xFF8A8F8A);
 const LIGHT_ACCENT = Colors.green;
 
 // Icon Colors
-final DARK_ICON = Colors.grey[700];
+// final DARK_ICON = Colors.grey[700];
+final DARK_ICON = Colors.white;
 final DARK_ICON_TXT = Colors.grey[500];
-final LIGHT_ICON = Colors.grey[500];
+// final LIGHT_ICON = Colors.grey[500];
+final LIGHT_ICON = Colors.black;
 final LIGHT_ICON_TXT = Colors.grey[700];
 
 // Text Colors
