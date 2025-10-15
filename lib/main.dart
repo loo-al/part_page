@@ -281,6 +281,7 @@ class _MyPageState extends State<MyPage> {
         ],
       ),
 
+      /*
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -300,6 +301,7 @@ class _MyPageState extends State<MyPage> {
           ),
         ],
       ),
+      */
 
     );
   }
