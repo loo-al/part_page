@@ -10,7 +10,8 @@ class Strings{
   String test = 'You have pushed the medium button this many times:';
 
   String appbar_title = '  Project';
-  String page_titile = 'ProjName:  Title of the Article Project';
+  String page_titile1 = 'Projects:';
+  String page_titile2 = 'Title of the Article Project';
   String title_date = 'MAY 9TH 2024';
   String title_intro = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna sit amet dolor eleifend feugiat.';
 

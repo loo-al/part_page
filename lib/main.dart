@@ -106,6 +106,8 @@ class _MyPageState extends State<MyPage> {
 
     // Set a max width for the components below the AppBar
     const maxWidth = 1000.0;
+    const maxSmallWidth = 518;
+    final isSmallWidth = Size().getScreenWidth() < 715;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -195,7 +197,8 @@ class _MyPageState extends State<MyPage> {
           Center(
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.
-            child: ConstrainedBox(constraints: BoxConstraints(maxWidth: maxWidth),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: maxWidth),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,9 +206,41 @@ class _MyPageState extends State<MyPage> {
 
                   SizedBox(height: Size().fiveh),
 
-                  Text(Strings().page_titile,
-                    style: Theme.of(context).textTheme.displayMedium, ),
+                  // Page Title handles resizing
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                        maxWidth: maxWidth
+                    ),
+                    child: isSmallWidth
+                      // width <= 715
+                      ?Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(Strings().page_titile1,
+                          style: Theme.of(context).textTheme.displayMedium, ),
+                        Text(Strings().page_titile2,
+                          style: TextStyle(color: CUSTOM_GREEN, fontSize: 45
+                          ),
+                        ),
+                      ],
+                    )
+                    // width >= 715
+                    : Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(Strings().page_titile1,
+                          style: Theme.of(context).textTheme.displayMedium, ),
+                        SizedBox(width: 15),
+                        Text(Strings().page_titile2,
+                          style: TextStyle(color: CUSTOM_GREEN, fontSize: 45
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
                   SizedBox(height: Size().body_space),
+
                   Text(Strings().title_intro,
                     style: Theme.of(context).textTheme.displaySmall, ),
 
