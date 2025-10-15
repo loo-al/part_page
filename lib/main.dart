@@ -114,9 +114,7 @@ class _MyPageState extends State<MyPage> {
       appBar: AppBar(
         //backgroundColor: Color(0xFF121212),
         title: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: ConstrainedBox(
+          child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: maxWidth),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center, // Center logo and buttons
@@ -149,11 +147,13 @@ class _MyPageState extends State<MyPage> {
                     ],
                   ),
 
-                  SizedBox(
-                      width: Size().getScreenWidth() < 800
-                          ? (Size().twentyw )
-                          : (Size().thirtyw + Size().fivew)
-                  ),
+                  Spacer(flex: 1),
+
+                  // SizedBox(
+                  //     width: Size().getScreenWidth() < 800
+                  //         ? (Size().twentyw )
+                  //         : (Size().thirtyw + Size().fivew + Size().twow + 15)
+                  // ),
 
                   // Floating Buttons with right padding (adjustable)
                   Row(
@@ -187,7 +187,7 @@ class _MyPageState extends State<MyPage> {
                 ],
               ), // Row
             ),
-          ), // Padding
+           // Padding
         ), // Center
       ),
 
